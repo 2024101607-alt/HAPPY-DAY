@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Carta interactiva animada para el Día de la Madre." />
+  <title> Día de la Madre</title>
+
+  <style>
+    :root {
+      --color-bg-1: #08091f;
+      --color-bg-2: #171132;
+      --color-bg-3: #2b1746;
+      --color-paper: #fff7ed;
+      --color-paper-dark: #e9d2bd;
+      --color-envelope: #f3dfc8;
+      --color-envelope-dark: #d9bea5;
+      --color-border: #8b6f52;
+      --color-accent: #c96567;
+      --color-accent-dark: #91464b;
+      --color-text: #4b382c;
+      --color-muted: #7b695b;
+      --shadow-strong: 0 26px 80px rgba(0, 0, 0, 0.55);
+      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.28);
+      --radius-md: 14px;
+      --transition-fast: 220ms ease;
+      --transition-normal: 520ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      min-height: 100%;
+      color-scheme: dark;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 18px;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--color-text);
+      background:
+        radial-gradient(circle at 78% 18%, rgba(255, 232, 166, .23) 0 7%, transparent 18%),
+        linear-gradient(180deg, var(--color-bg-1) 0%, var(--color-bg-2) 52%, var(--color-bg-3) 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 8% 14%, rgba(255,255,255,.95), transparent),
+        radial-gradient(3px 3px at 16% 31%, rgba(255,235,160,.95), transparent),
+        radial-gradient(2px 2px at 24% 58%, rgba(255,255,255,.95), transparent),
+        radial-gradient(3px 3px at 34% 18%, rgba(255,226,138,.9), transparent),
+        radial-gradient(2px 2px at 42% 74%, rgba(255,255,255,.92), transparent),
+        radial-gradient(3px 3px at 57% 27%, rgba(255,237,174,.95), transparent),
+        radial-gradient(2px 2px at 66% 52%, rgba(255,255,255,.9), transparent),
+        radial-gradient(3px 3px at 76% 36%, rgba(255,235,160,.94), transparent),
+        radial-gradient(2px 2px at 86% 68%, rgba(255,255,255,.94), transparent),
+        radial-gradient(2px 2px at 94% 19%, rgba(255,255,255,.88), transparent),
+        radial-gradient(1px 1px at 12% 78%, rgba(255,255,255,.7), transparent),
+        radial-gradient(1px 1px at 47% 9%, rgba(255,255,255,.7), transparent),
+        radial-gradient(1px 1px at 72% 88%, rgba(255,255,255,.65), transparent);
+      animation: skyTwinkle 4s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: clamp(42px, 9vw, 82px);
+      right: clamp(26px, 9vw, 110px);
+      width: clamp(72px, 13vw, 122px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle at 35% 30%, #fffdf1 0 15%, #fff0a6 42%, #d7b866 100%);
+      box-shadow:
+        0 0 38px rgba(255, 231, 132, .5),
+        0 0 88px rgba(255, 231, 132, .18),
+        inset -18px -18px 38px rgba(39, 28, 17, .22);
+      z-index: 1;
+    }
+
+    @keyframes skyTwinkle {
+      0%, 100% { opacity: .9; }
+      50% { opacity: .62; }
+    }
+
+    .scene {
+      position: relative;
+      z-index: 3;
+      width: min(100%, 460px);
+      display: grid;
+      place-items: center;
+    }
+
+    .floating-hearts,
+    .shooting-stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .floating-hearts {
+      z-index: 2;
+    }
+
+    .heart {
+      position: absolute;
+      left: var(--left);
+      top: var(--top);
+      font-size: var(--size);
+      opacity: 0;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+      animation: heartFloat 5s ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+
+    @keyframes heartFloat {
+      0% { opacity: 0; transform: translate3d(0, 18px, 0) scale(.6) rotate(-8deg); }
+      20% { opacity: .9; }
+      75% { opacity: .85; }
+      100% { opacity: 0; transform: translate3d(0, -76px, 0) scale(1) rotate(8deg); }
+    }
+
+    .shooting-stars {
+      z-index: 1;
+    }
+
+    .shooting-star {
+      position: absolute;
+      top: var(--top);
+      left: -240px;
+      width: 220px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.95), rgba(255,228,148,.95), transparent);
+      filter: drop-shadow(0 0 7px rgba(255,255,255,.8));
+      transform: rotate(-10deg);
+      animation: shootingStar 6s linear infinite;
+      animation-delay: var(--delay);
+    }
+
+    .shooting-star::after {
+      content: "";
+      position: absolute;
+      right: 20px;
+      top: -2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 12px #fff, 0 0 18px #ffe9a3;
+    }
+
+    @keyframes shootingStar {
+      0%, 22% { opacity: 0; transform: translateX(0) rotate(-10deg); }
+      26% { opacity: 1; }
+      45% { opacity: 1; }
+      56%, 100% { opacity: 0; transform: translateX(calc(100vw + 520px)) rotate(-10deg); }
+    }
+
+    .card-wrapper {
+      width: min(100%, 410px);
+      perspective: 1200px;
+    }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      min-height: 258px;
+      border: 0;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      isolation: isolate;
+      background: transparent;
+      transform-style: preserve-3d;
+      transition: transform var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .envelope:hover,
+    .envelope:focus-visible {
+      transform: translateY(-8px) scale(1.015);
+      outline: none;
+      filter: brightness(1.02);
+    }
+
+    .envelope:focus-visible .envelope-body {
+      box-shadow: var(--shadow-strong), 0 0 0 4px rgba(255, 230, 165, .48);
+    }
+
+    .envelope.is-opening {
+      animation: softShake 300ms ease;
+    }
+
+    @keyframes softShake {
+      0%, 100% { transform: translateX(0); }
+      30% { transform: translateX(-5px); }
+      70% { transform: translateX(5px); }
+    }
+
+    .envelope-body {
+      position: relative;
+      min-height: 258px;
+      border: 3px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.22), transparent 32%),
+        linear-gradient(135deg, var(--color-envelope) 0%, var(--color-envelope-dark) 100%);
+      box-shadow: var(--shadow-strong), inset 0 1px 0 rgba(255,255,255,.38);
+    }
+
+    .envelope-body::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 2px dashed rgba(110, 84, 58, .22);
+      border-radius: 10px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .envelope-body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: .55;
+      background-image:
+        radial-gradient(circle at 18% 20%, rgba(151, 105, 62, .12) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 36%, rgba(151, 105, 62, .10) 0 1px, transparent 2px),
+        radial-gradient(circle at 42% 78%, rgba(151, 105, 62, .09) 0 1px, transparent 2px);
+      background-size: 74px 74px;
+    }
+
+    .flap {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 54%;
+      display: grid;
+      place-items: start center;
+      padding-top: 24px;
+      z-index: 5;
+      color: var(--color-accent-dark);
+      background: linear-gradient(135deg, #f5dfc8 0%, #dfc3a9 100%);
+      border-bottom: 3px solid rgba(139, 111, 82, .8);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+      transform-origin: top center;
+      transition: transform 760ms cubic-bezier(.2,.8,.2,1), filter var(--transition-fast);
+      backface-visibility: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.38);
+    }
+
+    .flap-icon {
+      font-size: clamp(2.1rem, 9vw, 3rem);
+      line-height: 1;
+      filter: drop-shadow(0 4px 5px rgba(0,0,0,.2));
+      transform: translateY(-2px);
+    }
+
+    .envelope.is-open .flap {
+      transform: rotateX(180deg);
+      filter: brightness(.92);
+    }
+
+    .front-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+      transition: opacity var(--transition-normal), transform var(--transition-normal);
+    }
+
+    .envelope.is-open .front-content {
+      opacity: 0;
+      transform: translateY(18px) scale(.96);
+      pointer-events: none;
+    }
+
+    .main-icon {
+      display: block;
+      font-size: clamp(3.8rem, 13vw, 5.4rem);
+      line-height: 1;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,.22));
+    }
+
+    .front-title {
+      font-size: clamp(1.1rem, 4vw, 1.35rem);
+      color: var(--color-accent-dark);
+      margin-bottom: 8px;
+      letter-spacing: .2px;
+    }
+
+    .front-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-muted);
+      font-size: .9rem;
+      animation: hintBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes hintBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .flower {
+      position: absolute;
+      z-index: 3;
+      opacity: .84;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,.18));
+    }
+
+    .flower--one { top: 18px; right: 22px; font-size: 1.8rem; }
+    .flower--two { bottom: 22px; left: 20px; font-size: 1.65rem; }
+    .flower--three { top: 24px; left: 24px; font-size: 1.55rem; }
+
+    .letter {
+      position: relative;
+      z-index: 4;
+      width: calc(100% - 34px);
+      min-height: 298px;
+      max-height: min(72vh, 460px);
+      margin: 16px auto 0;
+      padding: 28px 24px 24px;
+      overflow-y: auto;
+      border-radius: 16px 16px 10px 10px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.2)),
+        linear-gradient(135deg, #fffaf4 0%, #fff0e5 100%);
+      box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,.8);
+      border: 1px solid rgba(139, 111, 82, .24);
+      transform: translateY(58px) scale(.94);
+      opacity: 0;
+      transition: opacity var(--transition-normal) 250ms, transform var(--transition-normal) 250ms;
+    }
+
+    .envelope.is-open .letter {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .letter-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .letter-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--color-accent-dark);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .letter-title {
+      color: var(--color-accent-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.55rem, 6vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .letter-body {
+      display: grid;
+      gap: 13px;
+      color: var(--color-text);
+      font-size: clamp(.96rem, 3vw, 1.03rem);
+      line-height: 1.72;
+      text-align: center;
+    }
+
+    .letter-signature {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--color-accent-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.16rem;
+      font-weight: 700;
+    }
+
+    .memory-photo {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .55);
+      border: 1px solid rgba(139, 111, 82, .18);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .12);
+    }
+
+    .memory-photo img {
+      display: block;
+      width: 100%;
+      max-height: 190px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #f2dfcc;
+    }
+
+    .memory-photo figcaption {
+      margin-top: 8px;
+      color: var(--color-muted);
+      font-size: .82rem;
+      line-height: 1.4;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--color-accent-dark);
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(.8);
+      pointer-events: none;
+      transition: opacity var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+      box-shadow: 0 8px 18px rgba(0,0,0,.24);
+    }
+
+    .close-button:hover,
+    .close-button:focus-visible {
+      background: var(--color-accent);
+      outline: none;
+    }
+
+    .envelope.is-open .close-button {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        align-items: center;
+        padding-inline: 14px;
+      }
+
+      .card-wrapper {
+        width: min(100%, 340px);
+      }
+
+      .envelope-body {
+        min-height: 228px;
+      }
+
+      .letter {
+        width: calc(100% - 24px);
+        min-height: 292px;
+        padding: 24px 18px 20px;
+      }
+
+      .flower--one { right: 16px; }
+      .flower--two { left: 16px; }
+      .flower--three { left: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating-hearts" aria-hidden="true">
+    <span class="heart" style="--left:10%; --top:22%; --size:1.9rem; --delay:0s;">❤️</span>
+    <span class="heart" style="--left:82%; --top:28%; --size:1.6rem; --delay:.7s;">💕</span>
+    <span class="heart" style="--left:50%; --top:14%; --size:2.1rem; --delay:1.2s;">💖</span>
+    <span class="heart" style="--left:18%; --top:70%; --size:1.7rem; --delay:1.9s;">💗</span>
+    <span class="heart" style="--left:86%; --top:62%; --size:1.95rem; --delay:2.6s;">❤️</span>
+    <span class="heart" style="--left:42%; --top:82%; --size:1.55rem; --delay:3.1s;">💝</span>
+  </div>
+
+  <div class="shooting-stars" aria-hidden="true">
+    <span class="shooting-star" style="--top:16%; --delay:0s;"></span>
+    <span class="shooting-star" style="--top:38%; --delay:2.4s;"></span>
+    <span class="shooting-star" style="--top:58%; --delay:4.2s;"></span>
+  </div>
+
+  <main class="scene" aria-labelledby="card-title">
+    <div class="card-wrapper">
+      <button class="envelope" id="envelope" type="button" aria-expanded="false" aria-controls="letter" aria-label="Abrir carta del Día de la Madre">
+        <section class="envelope-body" aria-live="polite">
+          <div class="front-content" aria-hidden="true">
+            <span class="flower flower--one">🌹</span>
+            <span class="flower flower--two">💐</span>
+            <span class="flower flower--three">🌸</span>
+
+            <div>
+              <span class="main-icon">💌</span>
+              <h1 class="front-title" id="card-title"> per Silvia</h1>
+              <p class="front-hint">Toca para abrir <span aria-hidden="true">✨</span></p>
+            </div>
+          </div>
+
+          <div class="flap" aria-hidden="true">
+            <span class="flap-icon">📮</span>
+          </div>
+
+          <article class="letter" id="letter">
+            <header class="letter-header">
+              <span class="letter-kicker">Buona festa della mamma</span>
+              <h2 class="letter-title">Para mamá</h2>
+            </header>
+
+            <div class="letter-body">
+              <p>Cara Signora,
+
+                 in questa giornata così speciale, desidero farle arrivare i miei più sinceri auguri per la Festa della Mamma.
+                 Colgo anche l’occasione per ringraziarLa di cuore per la persona straordinaria che è Sua figlia. 
+                 I valori, l’educazione e l’amore che Le ha trasmesso si riflettono in ogni suo gesto, 
+                 nel suo modo di essere e nella luce che porta nella vita di chi le sta accanto.
+                 È evidente che dietro una persona così speciale c’è una madre che ha saputo guidare, 
+                 insegnare e amare con dedizione e sincerità. Per questo Le sono profondamente grato: 
+                 non solo per ciò che ha fatto, ma per l’esempio che continua a rappresentare.
+                 Le auguro una giornata piena di serenità, affetto e gioia, circondata dalle persone che ama.
+                 Con stima e gratitudine, Alex
+                </p>
+              <!-- Cuando tengas una imagen, reemplaza "imagen-mama.jpg" por el nombre real del archivo. -->
+              <figure class="memory-photo">
+                <img src="imagen.JPG" alt="Recuerdo especial con mamá" />
+                <figcaption>- HAPPY DAY -</figcaption>
+              </figure>
+            </div>
+
+            <p class="letter-signature"> ❤️ </p>
+          </article>
+
+          <span class="sr-only" id="status-message">Carta cerrada</span>
+        </section>
+      </button>
+
+      <button class="close-button" id="closeButton" type="button" aria-label="Cerrar carta">×</button>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const envelope = document.querySelector('#envelope');
+      const closeButton = document.querySelector('#closeButton');
+      const statusMessage = document.querySelector('#status-message');
+
+      const openCard = () => {
+        envelope.classList.add('is-opening');
+
+        window.setTimeout(() => {
+          envelope.classList.remove('is-opening');
+          envelope.classList.add('is-open');
+          envelope.setAttribute('aria-expanded', 'true');
+          envelope.setAttribute('aria-label', 'Cerrar carta del Día de la Madre');
+          statusMessage.textContent = 'Carta abierta';
+        }, 280);
+      };
+
+      const closeCard = () => {
+        envelope.classList.remove('is-open');
+        envelope.setAttribute('aria-expanded', 'false');
+        envelope.setAttribute('aria-label', 'Abrir carta del Día de la Madre');
+        statusMessage.textContent = 'Carta cerrada';
+        envelope.focus();
+      };
+
+      envelope.addEventListener('click', () => {
+        if (envelope.classList.contains('is-open')) {
+          closeCard();
+          return;
+        }
+
+        openCard();
+      });
+      closeButton.addEventListener('click', closeCard);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && envelope.classList.contains('is-open')) {
+          closeCard();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
