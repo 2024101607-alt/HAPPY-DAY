@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Carta interactiva animada para el Día de la Madre." />
-  <title>FELIZ DIA MAMA ❤️</title>
+  <meta name="description" content="Gracias mama." />
+  <title>Día de la Madre</title>
 
   <style>
     :root {
       --color-bg-1: #08091f;
       --color-bg-2: #171132;
       --color-bg-3: #2b1746;
-      --color-paper: #fff7ed;
-      --color-paper-dark: #e9d2bd;
       --color-envelope: #f3dfc8;
       --color-envelope-dark: #d9bea5;
       --color-border: #8b6f52;
@@ -24,7 +23,7 @@
       --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.28);
       --radius-md: 14px;
       --transition-fast: 220ms ease;
-      --transition-normal: 520ms cubic-bezier(.2,.8,.2,1);
+      --transition-normal: 520ms cubic-bezier(.2, .8, .2, 1);
     }
 
     *,
@@ -59,19 +58,19 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        radial-gradient(2px 2px at 8% 14%, rgba(255,255,255,.95), transparent),
-        radial-gradient(3px 3px at 16% 31%, rgba(255,235,160,.95), transparent),
-        radial-gradient(2px 2px at 24% 58%, rgba(255,255,255,.95), transparent),
-        radial-gradient(3px 3px at 34% 18%, rgba(255,226,138,.9), transparent),
-        radial-gradient(2px 2px at 42% 74%, rgba(255,255,255,.92), transparent),
-        radial-gradient(3px 3px at 57% 27%, rgba(255,237,174,.95), transparent),
-        radial-gradient(2px 2px at 66% 52%, rgba(255,255,255,.9), transparent),
-        radial-gradient(3px 3px at 76% 36%, rgba(255,235,160,.94), transparent),
-        radial-gradient(2px 2px at 86% 68%, rgba(255,255,255,.94), transparent),
-        radial-gradient(2px 2px at 94% 19%, rgba(255,255,255,.88), transparent),
-        radial-gradient(1px 1px at 12% 78%, rgba(255,255,255,.7), transparent),
-        radial-gradient(1px 1px at 47% 9%, rgba(255,255,255,.7), transparent),
-        radial-gradient(1px 1px at 72% 88%, rgba(255,255,255,.65), transparent);
+        radial-gradient(2px 2px at 8% 14%, rgba(255, 255, 255, .95), transparent),
+        radial-gradient(3px 3px at 16% 31%, rgba(255, 235, 160, .95), transparent),
+        radial-gradient(2px 2px at 24% 58%, rgba(255, 255, 255, .95), transparent),
+        radial-gradient(3px 3px at 34% 18%, rgba(255, 226, 138, .9), transparent),
+        radial-gradient(2px 2px at 42% 74%, rgba(255, 255, 255, .92), transparent),
+        radial-gradient(3px 3px at 57% 27%, rgba(255, 237, 174, .95), transparent),
+        radial-gradient(2px 2px at 66% 52%, rgba(255, 255, 255, .9), transparent),
+        radial-gradient(3px 3px at 76% 36%, rgba(255, 235, 160, .94), transparent),
+        radial-gradient(2px 2px at 86% 68%, rgba(255, 255, 255, .94), transparent),
+        radial-gradient(2px 2px at 94% 19%, rgba(255, 255, 255, .88), transparent),
+        radial-gradient(1px 1px at 12% 78%, rgba(255, 255, 255, .7), transparent),
+        radial-gradient(1px 1px at 47% 9%, rgba(255, 255, 255, .7), transparent),
+        radial-gradient(1px 1px at 72% 88%, rgba(255, 255, 255, .65), transparent);
       animation: skyTwinkle 4s ease-in-out infinite;
       z-index: 0;
     }
@@ -94,8 +93,13 @@
     }
 
     @keyframes skyTwinkle {
-      0%, 100% { opacity: .9; }
-      50% { opacity: .62; }
+      0%, 100% {
+        opacity: .9;
+      }
+
+      50% {
+        opacity: .62;
+      }
     }
 
     .scene {
@@ -124,16 +128,29 @@
       top: var(--top);
       font-size: var(--size);
       opacity: 0;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
       animation: heartFloat 5s ease-in-out infinite;
       animation-delay: var(--delay);
     }
 
     @keyframes heartFloat {
-      0% { opacity: 0; transform: translate3d(0, 18px, 0) scale(.6) rotate(-8deg); }
-      20% { opacity: .9; }
-      75% { opacity: .85; }
-      100% { opacity: 0; transform: translate3d(0, -76px, 0) scale(1) rotate(8deg); }
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0) scale(.6) rotate(-8deg);
+      }
+
+      20% {
+        opacity: .9;
+      }
+
+      75% {
+        opacity: .85;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate3d(0, -76px, 0) scale(1) rotate(8deg);
+      }
     }
 
     .shooting-stars {
@@ -147,8 +164,8 @@
       width: 220px;
       height: 2px;
       border-radius: 999px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.95), rgba(255,228,148,.95), transparent);
-      filter: drop-shadow(0 0 7px rgba(255,255,255,.8));
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), rgba(255, 228, 148, .95), transparent);
+      filter: drop-shadow(0 0 7px rgba(255, 255, 255, .8));
       transform: rotate(-10deg);
       animation: shootingStar 6s linear infinite;
       animation-delay: var(--delay);
@@ -167,13 +184,27 @@
     }
 
     @keyframes shootingStar {
-      0%, 22% { opacity: 0; transform: translateX(0) rotate(-10deg); }
-      26% { opacity: 1; }
-      45% { opacity: 1; }
-      56%, 100% { opacity: 0; transform: translateX(calc(100vw + 520px)) rotate(-10deg); }
+      0%, 22% {
+        opacity: 0;
+        transform: translateX(0) rotate(-10deg);
+      }
+
+      26% {
+        opacity: 1;
+      }
+
+      45% {
+        opacity: 1;
+      }
+
+      56%, 100% {
+        opacity: 0;
+        transform: translateX(calc(100vw + 520px)) rotate(-10deg);
+      }
     }
 
     .card-wrapper {
+      position: relative;
       width: min(100%, 410px);
       perspective: 1200px;
     }
@@ -182,7 +213,6 @@
       position: relative;
       width: 100%;
       min-height: 258px;
-      border: 0;
       border-radius: var(--radius-md);
       cursor: pointer;
       isolation: isolate;
@@ -207,9 +237,17 @@
     }
 
     @keyframes softShake {
-      0%, 100% { transform: translateX(0); }
-      30% { transform: translateX(-5px); }
-      70% { transform: translateX(5px); }
+      0%, 100% {
+        transform: translateX(0);
+      }
+
+      30% {
+        transform: translateX(-5px);
+      }
+
+      70% {
+        transform: translateX(5px);
+      }
     }
 
     .envelope-body {
@@ -219,9 +257,9 @@
       border-radius: var(--radius-md);
       overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(255,255,255,.22), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, .22), transparent 32%),
         linear-gradient(135deg, var(--color-envelope) 0%, var(--color-envelope-dark) 100%);
-      box-shadow: var(--shadow-strong), inset 0 1px 0 rgba(255,255,255,.38);
+      box-shadow: var(--shadow-strong), inset 0 1px 0 rgba(255, 255, 255, .38);
     }
 
     .envelope-body::before {
@@ -260,15 +298,15 @@
       border-bottom: 3px solid rgba(139, 111, 82, .8);
       clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
       transform-origin: top center;
-      transition: transform 760ms cubic-bezier(.2,.8,.2,1), filter var(--transition-fast);
+      transition: transform 760ms cubic-bezier(.2, .8, .2, 1), filter var(--transition-fast);
       backface-visibility: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.38);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .38);
     }
 
     .flap-icon {
       font-size: clamp(2.1rem, 9vw, 3rem);
       line-height: 1;
-      filter: drop-shadow(0 4px 5px rgba(0,0,0,.2));
+      filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .2));
       transform: translateY(-2px);
     }
 
@@ -299,7 +337,7 @@
       font-size: clamp(3.8rem, 13vw, 5.4rem);
       line-height: 1;
       margin-bottom: 16px;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,.22));
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .22));
     }
 
     .front-title {
@@ -319,20 +357,39 @@
     }
 
     @keyframes hintBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
     }
 
     .flower {
       position: absolute;
       z-index: 3;
       opacity: .84;
-      filter: drop-shadow(0 6px 8px rgba(0,0,0,.18));
+      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .18));
     }
 
-    .flower--one { top: 18px; right: 22px; font-size: 1.8rem; }
-    .flower--two { bottom: 22px; left: 20px; font-size: 1.65rem; }
-    .flower--three { top: 24px; left: 24px; font-size: 1.55rem; }
+    .flower--one {
+      top: 18px;
+      right: 22px;
+      font-size: 1.8rem;
+    }
+
+    .flower--two {
+      bottom: 22px;
+      left: 20px;
+      font-size: 1.65rem;
+    }
+
+    .flower--three {
+      top: 24px;
+      left: 24px;
+      font-size: 1.55rem;
+    }
 
     .letter {
       position: relative;
@@ -345,13 +402,14 @@
       overflow-y: auto;
       border-radius: 16px 16px 10px 10px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.2)),
+        linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .2)),
         linear-gradient(135deg, #fffaf4 0%, #fff0e5 100%);
-      box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,.8);
+      box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, .8);
       border: 1px solid rgba(139, 111, 82, .24);
       transform: translateY(58px) scale(.94);
       opacity: 0;
       transition: opacity var(--transition-normal) 250ms, transform var(--transition-normal) 250ms;
+      cursor: default;
     }
 
     .envelope.is-open .letter {
@@ -428,7 +486,7 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      z-index: 10;
+      z-index: 20;
       width: 34px;
       height: 34px;
       display: grid;
@@ -442,7 +500,7 @@
       transform: scale(.8);
       pointer-events: none;
       transition: opacity var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
-      box-shadow: 0 8px 18px rgba(0,0,0,.24);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .24);
     }
 
     .close-button:hover,
@@ -451,10 +509,55 @@
       outline: none;
     }
 
-    .envelope.is-open .close-button {
+    .envelope.is-open + .close-button {
       opacity: 1;
       transform: scale(1);
       pointer-events: auto;
+    }
+
+    .music-button {
+      position: absolute;
+      left: 50%;
+      bottom: -66px;
+      transform: translateX(-50%);
+      z-index: 30;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255, 255, 255, .55);
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(145, 70, 75, .9);
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, .35);
+      transition: transform var(--transition-fast), background var(--transition-fast), opacity var(--transition-fast);
+      opacity: .95;
+    }
+
+    .music-button:hover,
+    .music-button:focus-visible {
+      background: rgba(201, 101, 103, .95);
+      outline: none;
+      transform: translateX(-50%) scale(1.06);
+    }
+
+    .music-button svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .music-button .pause-icon {
+      display: none;
+    }
+
+    .music-button.is-playing .play-icon {
+      display: none;
+    }
+
+    .music-button.is-playing .pause-icon {
+      display: block;
     }
 
     .sr-only {
@@ -489,9 +592,17 @@
         padding: 24px 18px 20px;
       }
 
-      .flower--one { right: 16px; }
-      .flower--two { left: 16px; }
-      .flower--three { left: 18px; }
+      .flower--one {
+        right: 16px;
+      }
+
+      .flower--two {
+        left: 16px;
+      }
+
+      .flower--three {
+        left: 18px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -525,7 +636,16 @@
 
   <main class="scene" aria-labelledby="card-title">
     <div class="card-wrapper">
-      <button class="envelope" id="envelope" type="button" aria-expanded="false" aria-controls="letter" aria-label="Abrir carta del Día de la Madre">
+
+      <div
+        class="envelope"
+        id="envelope"
+        role="button"
+        tabindex="0"
+        aria-expanded="false"
+        aria-controls="letter"
+        aria-label="Abrir carta del Día de la Madre"
+      >
         <section class="envelope-body" aria-live="polite">
           <div class="front-content" aria-hidden="true">
             <span class="flower flower--one">🌹</span>
@@ -534,12 +654,12 @@
 
             <div>
               <span class="main-icon">💌</span>
-              <h1 class="front-title" id="card-title"> Per Silvia</h1>
+              <h1 class="front-title" id="card-title">Per Silvia</h1>
               <p class="front-hint">Toca para abrir <span aria-hidden="true">✨</span></p>
             </div>
           </div>
 
-          <div class="flap" aria-hidden="true"
+          <div class="flap" aria-hidden="true">
             <span class="flap-icon">📮</span>
           </div>
 
@@ -550,33 +670,43 @@
             </header>
 
             <div class="letter-body">
-              <p>Cara Signora,
+              <p>
 
-                 in questa giornata così speciale, desidero farle arrivare i miei più sinceri auguri per la Festa della Mamma.
-                 Colgo anche l’occasione per ringraziarLa di cuore per la persona straordinaria che è Sua figlia. 
-                 I valori, l’educazione e l’amore che Le ha trasmesso si riflettono in ogni suo gesto, 
-                 nel suo modo di essere e nella luce che porta nella vita di chi le sta accanto.
-                 È evidente che dietro una persona così speciale c’è una madre che ha saputo guidare, 
-                 insegnare e amare con dedizione e sincerità. Per questo Le sono profondamente grato: 
-                 non solo per ciò che ha fatto, ma per l’esempio che continua a rappresentare.
-                 Le auguro una giornata piena di serenità, affetto e gioia, circondata dalle persone che ama.
-                 Con stima e gratitudine, Alex
-                </p>
-              <!-- Cuando tengas una imagen, reemplaza "imagen-mama.jpg" por el nombre real del archivo. -->
+                <br><br>
+                Con stima e gratitudine<br>
+                Alex
+              </p>
+
               <figure class="memory-photo">
                 <img src="imagen.JPG" alt="Recuerdo especial con mamá" />
                 <figcaption>- HAPPY DAY -</figcaption>
               </figure>
             </div>
 
-            <p class="letter-signature"> ❤️ </p>
+            <p class="letter-signature">❤️</p>
           </article>
 
           <span class="sr-only" id="status-message">Carta cerrada</span>
         </section>
-      </button>
+      </div>
 
       <button class="close-button" id="closeButton" type="button" aria-label="Cerrar carta">×</button>
+
+      <audio id="backgroundMusic" loop preload="auto">
+        <source src="musica-mama.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+
+      <button class="music-button" id="musicButton" type="button" aria-label="Reproducir música">
+        <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+
+        <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+        </svg>
+      </button>
+
     </div>
   </main>
 
@@ -585,43 +715,112 @@
       const envelope = document.querySelector('#envelope');
       const closeButton = document.querySelector('#closeButton');
       const statusMessage = document.querySelector('#status-message');
+      const backgroundMusic = document.querySelector('#backgroundMusic');
+      const musicButton = document.querySelector('#musicButton');
+
+      let isMusicPlaying = false;
+
+      const updateMusicButton = () => {
+        if (isMusicPlaying) {
+          musicButton.classList.add('is-playing');
+          musicButton.setAttribute('aria-label', 'Pausar música');
+        } else {
+          musicButton.classList.remove('is-playing');
+          musicButton.setAttribute('aria-label', 'Reproducir música');
+        }
+      };
+
+      const playMusic = async () => {
+        try {
+          backgroundMusic.volume = 0.55;
+          await backgroundMusic.play();
+          isMusicPlaying = true;
+          updateMusicButton();
+        } catch (error) {
+          isMusicPlaying = false;
+          updateMusicButton();
+          console.warn('El navegador bloqueó la reproducción del audio o no encontró el archivo:', error);
+        }
+      };
+
+      const pauseMusic = () => {
+        backgroundMusic.pause();
+        isMusicPlaying = false;
+        updateMusicButton();
+      };
 
       const openCard = () => {
+        if (envelope.classList.contains('is-open')) return;
+
         envelope.classList.add('is-opening');
+        envelope.classList.add('is-open');
+
+        envelope.setAttribute('aria-expanded', 'true');
+        envelope.setAttribute('aria-label', 'Carta abierta');
+        statusMessage.textContent = 'Carta abierta';
+
+        playMusic();
 
         window.setTimeout(() => {
           envelope.classList.remove('is-opening');
-          envelope.classList.add('is-open');
-          envelope.setAttribute('aria-expanded', 'true');
-          envelope.setAttribute('aria-label', 'Cerrar carta del Día de la Madre');
-          statusMessage.textContent = 'Carta abierta';
         }, 280);
       };
 
       const closeCard = () => {
         envelope.classList.remove('is-open');
+        envelope.classList.remove('is-opening');
+
         envelope.setAttribute('aria-expanded', 'false');
         envelope.setAttribute('aria-label', 'Abrir carta del Día de la Madre');
         statusMessage.textContent = 'Carta cerrada';
+
+        pauseMusic();
         envelope.focus();
       };
 
       envelope.addEventListener('click', () => {
-        if (envelope.classList.contains('is-open')) {
-          closeCard();
-          return;
-        }
-
         openCard();
       });
-      closeButton.addEventListener('click', closeCard);
+
+      envelope.addEventListener('keydown', (event) => {
+        const isEnter = event.key === 'Enter';
+        const isSpace = event.key === ' ';
+
+        if (isEnter || isSpace) {
+          event.preventDefault();
+          openCard();
+        }
+      });
+
+      closeButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        closeCard();
+      });
+
+      musicButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        if (isMusicPlaying) {
+          pauseMusic();
+        } else {
+          playMusic();
+        }
+      });
+
+      backgroundMusic.addEventListener('ended', () => {
+        isMusicPlaying = false;
+        updateMusicButton();
+      });
 
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && envelope.classList.contains('is-open')) {
           closeCard();
         }
       });
+
+      updateMusicButton();
     })();
   </script>
 </body>
+
 </html>
